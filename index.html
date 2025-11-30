@@ -1,316 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Clock — 4 Premium Themes</title>
-    <style>
-        :root {
-            --hue: 240;
-            --orb-size: clamp(280px, 85vw, 540px);
-            --toggle-w: clamp(3.4rem, 11vw, 4.8rem);
-            --toggle-h: calc(var(--toggle-w)/2);
-            --knob-size: calc(var(--toggle-h) - 10px);
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: system-ui, -apple-system, sans-serif;
-            overflow: hidden;
-            background: #0d0d1a;
-            transition: background .8s ease;
-        }
-
-        #orb {
-            position: absolute;
-            width: var(--orb-size);
-            height: var(--orb-size);
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, hsl(var(--hue), 80%, 55%), hsl(calc(var(--hue)+60), 90%, 65%), hsl(var(--hue), 80%, 55%));
-            box-shadow: 0 0 90px 30px hsl(var(--hue), 90%, 65%), 0 0 180px 60px hsl(var(--hue), 90%, 55%);
-            animation: breathe 14s ease-in-out infinite;
-            filter: blur(2px);
-            pointer-events: none;
-            z-index: 1;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes breathe {
-
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.75
-            }
-
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 0.92
-            }
-        }
-
-        #app {
-            position: relative;
-            z-index: 10;
-            text-align: center
-        }
-
-        .clock {
-            font-size: clamp(3.8rem, 14vw, 12rem);
-            font-weight: 900;
-            line-height: 1.1;
-            user-select: none
-        }
-
-        #time {
-            color: #fff;
-            text-shadow: 0 0 30px rgba(255, 255, 255, .4), 0 0 70px hsl(var(--hue), 90%, 70%), 0 0 120px hsl(var(--hue), 90%, 85%);
-            animation: glow 8s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                text-shadow: 0 0 30px rgba(255, 255, 255, .4), 0 0 70px hsl(var(--hue), 90%, 70%), 0 0 120px hsl(var(--hue), 90%, 85%)
-            }
-
-            50% {
-                text-shadow: 0 0 50px rgba(255, 255, 255, .6), 0 0 100px hsl(var(--hue), 90%, 80%), 0 0 160px hsl(var(--hue), 100%, 90%)
-            }
-        }
-
-        #date {
-            font-size: 0.26em;
-            font-weight: 600;
-            opacity: 0.92;
-            margin-top: 0.3em;
-            color: #fff
-        }
-
-        /* Theme button with crisp SVG arrow */
-        #themeBtn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(12px);
-            border: none;
-            border-radius: 50px;
-            padding: 12px 22px;
-            color: #fff;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            z-index: 30;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #themeBtn svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-            opacity: 0.9
-        }
-
-        /* 12/24 toggle */
-        .toggle {
-            position: fixed;
-            width: var(--toggle-w);
-            height: var(--toggle-h);
-            z-index: 20;
-            cursor: pointer;
-            user-select: none;
-            left: 20px;
-            top: 20px;
-        }
-
-        .toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0
-        }
-
-        .track {
-            position: absolute;
-            inset: 0;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.3);
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
-            transition: all .5s cubic-bezier(.2, .8, .2, 1);
-        }
-
-        .toggle input:checked+.track {
-            background: rgba(100, 150, 255, 0.6)
-        }
-
-        .knob {
-            position: absolute;
-            top: 50%;
-            left: 5px;
-            width: var(--knob-size);
-            height: var(--knob-size);
-            border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            transform: translateY(-50%);
-            transition: all .5s cubic-bezier(.2, .8, .2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.65em;
-            color: #1e293b;
-        }
-
-        .toggle input:checked+.track .knob {
-            transform: translateX(calc(var(--toggle-w) - var(--knob-size) - 10px)) translateY(-50%);
-        }
-
-        /* Fullscreen button */
-        #fsBtn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 30;
-        }
-
-        #fsBtn:hover {
-            transform: scale(1.2)
-        }
-
-        .fs-icon {
-            width: 36px;
-            height: 36px;
-            fill: #fff;
-            filter: drop-shadow(0 3px 8px #000)
-        }
-
-        .compress {
-            display: none
-        }
-
-        .fs-active .compress {
-            display: block
-        }
-
-        .fs-active .expand {
-            display: none
-        }
-    </style>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Aura Clock — 4 Premium Themes</title>
+<style>:root{--hue:240;--orb-size:clamp(280px, 85vw, 540px);--toggle-w:clamp(3.4rem, 11vw, 4.8rem);--toggle-h:calc(var(--toggle-w)/2);--knob-size:calc(var(--toggle-h) - 10px)}body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;font-family:system-ui,-apple-system,sans-serif;overflow:hidden;background:#0d0d1a;transition:background .8s ease}#orb{position:absolute;width:var(--orb-size);height:var(--orb-size);border-radius:50%;background:conic-gradient(from 0deg,hsl(var(--hue),80%,55%),hsl(calc(var(--hue)+60),90%,65%),hsl(var(--hue),80%,55%));box-shadow:0 0 90px 30px hsl(var(--hue),90%,65%),0 0 180px 60px hsl(var(--hue),90%,55%);animation:breathe 14s ease-in-out infinite;filter:blur(2px);pointer-events:none;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%)}@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.75}50%{transform:translate(-50%,-50%) scale(1.2);opacity:.92}}#app{position:relative;z-index:10;text-align:center}.clock{font-size:clamp(3.8rem, 14vw, 12rem);font-weight:900;line-height:1.1;user-select:none}#time{color:#fff;text-shadow:0 0 30px rgba(255,255,255,.4),0 0 70px hsl(var(--hue),90%,70%),0 0 120px hsl(var(--hue),90%,85%);animation:glow 8s ease-in-out infinite}@keyframes glow{0%,100%{text-shadow:0 0 30px rgba(255,255,255,.4),0 0 70px hsl(var(--hue),90%,70%),0 0 120px hsl(var(--hue),90%,85%)}50%{text-shadow:0 0 50px rgba(255,255,255,.6),0 0 100px hsl(var(--hue),90%,80%),0 0 160px hsl(var(--hue),100%,90%)}}#date{font-size:.26em;font-weight:600;opacity:.92;margin-top:.3em;color:#fff}#themeBtn{position:fixed;top:20px;right:20px;background:rgba(255,255,255,.18);backdrop-filter:blur(12px);border:none;border-radius:50px;padding:12px 22px;color:#fff;font-weight:600;font-size:15px;cursor:pointer;z-index:30;display:flex;align-items:center;gap:10px}#themeBtn svg{width:16px;height:16px;fill:currentColor;opacity:.9}.toggle{position:fixed;width:var(--toggle-w);height:var(--toggle-h);z-index:20;cursor:pointer;user-select:none;left:20px;top:20px}.toggle input{opacity:0;width:0;height:0}.track{position:absolute;inset:0;border-radius:50px;background:rgba(255,255,255,.3);box-shadow:inset 0 2px 6px rgba(0,0,0,.2);transition:all .5s cubic-bezier(.2, .8, .2, 1)}.toggle input:checked+.track{background:rgba(100,150,255,.6)}.knob{position:absolute;top:50%;left:5px;width:var(--knob-size);height:var(--knob-size);border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.3);transform:translateY(-50%);transition:all .5s cubic-bezier(.2, .8, .2, 1);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.65em;color:#1e293b}.toggle input:checked+.track .knob{transform:translateX(calc(var(--toggle-w) - var(--knob-size) - 10px)) translateY(-50%)}#fsBtn{position:fixed;bottom:24px;right:24px;background:0 0;border:none;cursor:pointer;z-index:30}#fsBtn:hover{transform:scale(1.2)}.fs-icon{width:36px;height:36px;fill:#fff;filter:drop-shadow(0 3px 8px #000)}.compress{display:none}.fs-active .compress{display:block}.fs-active .expand{display:none}</style>
 </head>
-
 <body>
-
-    <div id="orb"></div>
-
-    <div id="app">
-        <div class="clock" role="timer">
-            <div id="time"></div>
-            <div id="date"></div>
-        </div>
-    </div>
-
-    <!-- Theme Button with SVG Arrow -->
-    <button id="themeBtn">
-        <span id="themeName">Cosmic Violet</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 10l5 5 5-5z" />
-        </svg>
-    </button>
-
-    <!-- 12/24 Hour Toggle -->
-    <label class="toggle">
-        <input type="checkbox" id="clockFormat">
-        <div class="track">
-            <div class="knob" id="clockLabel">12H</div>
-        </div>
-    </label>
-
-    <!-- Fullscreen Button -->
-    <button id="fsBtn" aria-label="Toggle fullscreen">
-        <svg class="fs-icon" viewBox="0 0 24 24">
-            <path class="expand" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
-            <path class="compress" d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
-        </svg>
-    </button>
-
-    <script>
-        const themes = [
-            { name: "Cosmic Violet", hue: 240 },
-            { name: "Miami Sunset", hue: 340 },
-            { name: "Forest Dream", hue: 140 },
-            { name: "Arctic Frost", hue: 200 }
-        ];
-        let themeIdx = Number(localStorage.getItem('auraTheme') || 0);
-        let is24h = localStorage.getItem('clockFormat') === '24';
-
-        const themeBtn = document.getElementById('themeBtn');
-        const themeName = document.getElementById('themeName');
-        const clockToggle = document.getElementById('clockFormat');
-        const clockLabel = document.getElementById('clockLabel');
-
-        function setTheme() {
-            const t = themes[themeIdx];
-            document.documentElement.style.setProperty('--hue', t.hue);
-            themeName.textContent = t.name;
-            document.body.style.background = (t.hue === 200) ? '#0a1a2f' : '#0d0d1a';
-        }
-        setTheme();
-
-        themeBtn.onclick = () => {
-            themeIdx = (themeIdx + 1) % themes.length;
-            localStorage.setItem('auraTheme', themeIdx);
-            setTheme();
-        };
-
-        clockToggle.checked = is24h;
-        clockLabel.textContent = is24h ? '24H' : '12H';
-        clockToggle.addEventListener('change', () => {
-            is24h = clockToggle.checked;
-            localStorage.setItem('clockFormat', is24h ? '24' : '12');
-            clockLabel.textContent = is24h ? '24H' : '12H';
-            updateTime();
-        });
-
-        function updateTime() {
-            const n = new Date();
-            const h = n.getHours();
-            const m = String(n.getMinutes()).padStart(2, '0');
-            const s = String(n.getSeconds()).padStart(2, '0');
-            const ampm = h >= 12 ? ' PM' : ' AM';
-            const displayH = is24h ? h : (h % 12 || 12);
-
-            document.getElementById('time').textContent = is24h
-                ? `${String(h).padStart(2, '0')}:${m}:${s}`
-                : `${displayH}:${m}:${s}${ampm}`;
-
-            document.getElementById('date').textContent = n.toLocaleDateString('en-US', {
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-            });
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        // Fullscreen
-        document.querySelector('.clock').ondblclick = () => document.documentElement.requestFullscreen?.();
-        const fsBtn = document.getElementById('fsBtn');
-        fsBtn.onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
-        document.addEventListener('fullscreenchange', () => fsBtn.classList.toggle('fs-active', !!document.fullscreenElement));
-        if (window.self !== window.top) fsBtn.style.display = 'none';
-    </script>
+<div id=orb></div>
+<div id=app>
+<div class=clock role=timer>
+<div id=time></div>
+<div id=date></div>
+</div>
+</div>
+<button id=themeBtn>
+<span id=themeName>Cosmic Violet</span>
+<svg viewBox="0 0 24 24" aria-hidden=true>
+<path d="M7 10l5 5 5-5z"/>
+</svg>
+</button>
+<label class=toggle>
+<input type=checkbox id=clockFormat>
+<div class=track>
+<div class=knob id=clockLabel>12H</div>
+</div>
+</label>
+<button id=fsBtn aria-label="Toggle fullscreen">
+<svg class=fs-icon viewBox="0 0 24 24">
+<path class=expand d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+<path class=compress d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+</svg>
+</button>
+<script>const themes=[{name:"Cosmic Violet",hue:240},{name:"Miami Sunset",hue:340},{name:"Forest Dream",hue:140},{name:"Arctic Frost",hue:200}];let themeIdx=Number(localStorage.getItem("auraTheme")||0),is24h="24"===localStorage.getItem("clockFormat");const themeBtn=document.getElementById("themeBtn"),themeName=document.getElementById("themeName"),clockToggle=document.getElementById("clockFormat"),clockLabel=document.getElementById("clockLabel");function setTheme(){const e=themes[themeIdx];document.documentElement.style.setProperty("--hue",e.hue),themeName.textContent=e.name,document.body.style.background=200===e.hue?"#0a1a2f":"#0d0d1a"}function updateTime(){const e=new Date,t=e.getHours(),n=String(e.getMinutes()).padStart(2,"0"),c=String(e.getSeconds()).padStart(2,"0"),o=t>=12?" PM":" AM",m=is24h?t:t%12||12;document.getElementById("time").textContent=is24h?`${String(t).padStart(2,"0")}:${n}:${c}`:`${m}:${n}:${c}${o}`,document.getElementById("date").textContent=e.toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"})}setTheme(),themeBtn.onclick=()=>{themeIdx=(themeIdx+1)%themes.length,localStorage.setItem("auraTheme",themeIdx),setTheme()},clockToggle.checked=is24h,clockLabel.textContent=is24h?"24H":"12H",clockToggle.addEventListener("change",(()=>{is24h=clockToggle.checked,localStorage.setItem("clockFormat",is24h?"24":"12"),clockLabel.textContent=is24h?"24H":"12H",updateTime()})),setInterval(updateTime,1e3),updateTime(),document.querySelector(".clock").ondblclick=()=>document.documentElement.requestFullscreen?.();const fsBtn=document.getElementById("fsBtn");fsBtn.onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(),document.addEventListener("fullscreenchange",(()=>fsBtn.classList.toggle("fs-active",!!document.fullscreenElement))),window.self!==window.top&&(fsBtn.style.display="none")</script>
 </body>
-
 </html>
