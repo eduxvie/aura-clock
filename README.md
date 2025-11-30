@@ -1,27 +1,56 @@
+# Aura Clock — 4 Premium Glowing Themes for Notion
+
+The most beautiful, breathing clock widget ever made for Notion.  
+4 hand-crafted color themes · 12/24h toggle · fullscreen mode · mobile-perfect
+
+Live demo → https://yourusername.github.io/aura-clock/
+
+https://github.com/yourusername/aura-clock/assets/XXXXXX/animated-preview.gif
+*(Add a 3–5 second looping GIF of the orb breathing + theme switch here — converts 3× better)*
+
+## Why People Love Aura Clock
+
+- Feels alive — subtle breathing glow that reacts to your focus
+- 4 stunning themes: Cosmic Violet · Miami Sunset · Forest Dream · Arctic Frost
+- Zero dependencies — single HTML file
+- Works perfectly inside Notion (desktop + mobile), Framer, personal sites
+- Saves your theme and 12/24h preference forever
+- Lifetime free updates
+
+## Purchase & Instant Access
+
+Available exclusively on Gumroad → one-time payment, lifetime access.
+
+[Buy Aura Clock Now — $29 → Launch Price $19 (first 100 buyers)](https://your-gumroad-link.com)
+
+After purchase you’ll instantly receive:
+- Clean, commented source code
+- Minified version (for faster loading)
+- Step-by-step PDF guide
+- Bonus: Dark-mode optimized version
+- Direct email support from me
+
+## Super Simple Installation (30 seconds)
+
+1. Download the ZIP from Gumroad  
+2. Upload `index.html` to GitHub Pages, Vercel, Netlify, or Cloudflare Pages (all free)  
+3. Copy the public URL  
+4. In Notion → type `/embed` → paste URL → done!
+
+Works even if you’ve never hosted anything before — I include exact screenshots for GitHub Pages.
+
+## Licensing & Usage
+
+- Unlimited personal and commercial use in your own Notion workspaces, client projects, or websites
+- You may modify the code for your own needs
+- Redistribution or resale of the source code is not allowed
+- Please send friends & followers to the Gumroad link so they get updates + support
+
+Made with passion by @eduxvie · 2025
+
 ---
 
-## 🛒 Purchase & Install (Gumroad)
+### Want the matching Focus Pulse timer + streak counter bundle later?
+Join 2,000+ others on the waitlist → [gum.co/aura-bundle-waitlist]
 
-Aura Clock: Focus Pulse Edition is available exclusively through Gumroad.
-
-### How to Buy
-1. Visit the Gumroad product page:  
-   👉 [Buy Aura Clock on Gumroad](https://gumroad.com/yourproductlink)
-2. Complete checkout securely with PayPal or credit card.
-3. After purchase, you’ll receive a **ZIP file** containing the widget.
-
-### How to Install
-1. Extract the ZIP file you downloaded from Gumroad.
-2. Upload the `index.html` file to any static host (GitHub Pages, Netlify, Vercel, etc.).
-3. Copy the hosted URL (e.g., `https://yourusername.github.io/aura-clock/index.html`).
-4. In Notion, type `/embed` and paste the URL.
-5. Resize the block to fit your workspace — the clock will scale automatically.
-
----
-
-## 🔒 Licensing
-- This widget is for **personal and commercial use** in your Notion workspace or website.
-- Redistribution of the source code is not permitted.  
-- Please direct others to the Gumroad page if they wish to purchase.
-
----
+Thank you for supporting an indie maker!
