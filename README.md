@@ -3,10 +3,10 @@
 The most beautiful, breathing clock widget ever made for Notion.  
 4 hand-crafted color themes · 12/24h toggle · fullscreen mode · mobile-perfect
 
-Live demo → https://yourusername.github.io/aura-clock/
+Live demo → https://eduxvie.github.io/aura-clock/
 
-https://github.com/yourusername/aura-clock/assets/XXXXXX/animated-preview.gif
-*(Add a 3–5 second looping GIF of the orb breathing + theme switch here — converts 3× better)*
+https://github.com/eduxvie/aura-clock/2025_Aura_Clock_Demo_version_2.0.mp4
+
 
 ## Why People Love Aura Clock
 
@@ -21,16 +21,13 @@ https://github.com/yourusername/aura-clock/assets/XXXXXX/animated-preview.gif
 
 Available exclusively on Gumroad → one-time payment, lifetime access.
 
-[Buy Aura Clock Now — $29 → Launch Price $19 (first 100 buyers)](https://your-gumroad-link.com)
-
 After purchase you’ll instantly receive:
 - Clean, commented source code
 - Minified version (for faster loading)
 - Step-by-step PDF guide
-- Bonus: Dark-mode optimized version
 - Direct email support from me
 
-## Super Simple Installation (30 seconds)
+## Super Simple Installation
 
 1. Download the ZIP from Gumroad  
 2. Upload `index.html` to GitHub Pages, Vercel, Netlify, or Cloudflare Pages (all free)  
@@ -41,7 +38,7 @@ Works even if you’ve never hosted anything before — I include exact screensh
 
 ## Licensing & Usage
 
-- Unlimited personal and commercial use in your own Notion workspaces, client projects, or websites
+- Unlimited personal and commercial use in *your own Notion workspaces, client projects, or websites*
 - You may modify the code for your own needs
 - Redistribution or resale of the source code is not allowed
 - Please send friends & followers to the Gumroad link so they get updates + support
@@ -49,8 +46,5 @@ Works even if you’ve never hosted anything before — I include exact screensh
 Made with passion by @eduxvie · 2025
 
 ---
-
-### Want the matching Focus Pulse timer + streak counter bundle later?
-Join 2,000+ others on the waitlist → [gum.co/aura-bundle-waitlist]
 
 Thank you for supporting an indie maker!
