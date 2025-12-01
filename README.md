@@ -3,9 +3,7 @@
 The most beautiful, breathing clock widget ever made for Notion.  
 4 hand-crafted color themes · 12/24h toggle · fullscreen mode · mobile-perfect
 
-Live demo → https://eduxvie.github.io/aura-clock/
-
-https://github.com/eduxvie/aura-clock/2025_Aura_Clock_Demo_version_2.0.mp4
+Demo → [https://github.com/eduxvie/aura-clock/2025_Aura_Clock_Demo_version_2.0.mp4](https://ca.pinterest.com/pin/337699672080955660/)
 
 
 ## Why People Love Aura Clock
